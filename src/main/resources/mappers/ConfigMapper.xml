@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.lxk.mapper.ConfigMapper">
+	<resultMap id="BaseResultMap"  type="com.example.lxk.model.Config">
+		<id column="configId" property="configId" jdbcType="VARCHAR" />
+		<result column="userId" property="userId" jdbcType="VARCHAR" />
+		<result column="inputType" property="inputType" jdbcType="VARCHAR" />
+		<result column="inputUnit" property="inputUnit" jdbcType="VARCHAR" />
+		<result column="inputLine" property="inputLine" jdbcType="VARCHAR" />
+		<result column="inputHeigh" property="inputHeigh" jdbcType="VARCHAR" />
+		<result column="inputLow" property="inputLow" jdbcType="VARCHAR" />
+		<result column="outputType" property="outputType" jdbcType="VARCHAR" />
+		<result column="outputUnit" property="outputUnit" jdbcType="VARCHAR" />
+		<result column="outputLine" property="outputLine" jdbcType="VARCHAR" />
+		<result column="outputHeigh" property="outputHeigh" jdbcType="VARCHAR" />
+		<result column="outputLow" property="outputLow" jdbcType="VARCHAR" />
+		<result column="baseOffSet" property="baseOffSet" jdbcType="VARCHAR" />
+		<result column="holdTime" property="holdTime" jdbcType="VARCHAR" />
+		<result column="error" property="error" jdbcType="VARCHAR" />
+		<result column="returnError" property="returnError" jdbcType="VARCHAR" />
+
+		<result column="checkPoints" property="checkPoints" jdbcType="VARCHAR" />
+		<result column="isReturn" property="isReturn" jdbcType="VARCHAR" />
+		<result column="baudrate" property="baudrate" jdbcType="VARCHAR" />
+		<result column="databits" property="databits" jdbcType="VARCHAR" />
+		<result column="stopbits" property="stopbits" jdbcType="VARCHAR" />
+		<result column="parity" property="parity" jdbcType="VARCHAR" />
+		
+		<result column="productType" property="productType"  jdbcType="VARCHAR" />
+		<result column="productNum" property="productNum"  jdbcType="VARCHAR" />
+		<result column="productLevel" property="productLevel"  jdbcType="VARCHAR" />
+		<result column="productFactory" property="productFactory"  jdbcType="VARCHAR" />
+		<result column="productGMT" property="productGMT"  jdbcType="TIMESTAMP" />
+		<result column="productInputRange" property="productInputRange"  jdbcType="VARCHAR" />
+		<result column="productOutputRange" property="productOutputRange"  jdbcType="VARCHAR" />
+		<result column="productInputRangeTwo" property="productInputRangeTwo"  jdbcType="VARCHAR" />
+		<result column="productOutputRangeTwo" property="productOutputRangeTwo"  jdbcType="VARCHAR" />
+		<result column="productUseSpot" property="productUseSpot"  jdbcType="VARCHAR" />
+		<result column="isChannelTwo" property="isChannelTwo"  jdbcType="VARCHAR" />
+		
+		<result column="deviceGenerateType" property="deviceGenerateType"  jdbcType="VARCHAR" />
+		<result column="deviceGenerateNum" property="deviceGenerateNum"  jdbcType="VARCHAR" />
+		<result column="deviceGenerateLevel" property="deviceGenerateLevel"  jdbcType="VARCHAR" />
+		<result column="deviceProofType" property="deviceProofType"  jdbcType="VARCHAR" />
+		<result column="deviceProofNum" property="deviceProofNum"  jdbcType="VARCHAR" />
+		<result column="deviceProofLevel" property="deviceProofLevel"  jdbcType="VARCHAR" />
+		<result column="testPointNum" property="testPointNum"  jdbcType="VARCHAR" />
+		
+		<result column="workProperty" property="workProperty"  jdbcType="VARCHAR" />
+		<result column="temperature" property="temperature"  jdbcType="VARCHAR" />
+		<result column="relativeHumidity" property="relativeHumidity"  jdbcType="VARCHAR" />
+		<result column="region" property="region"  jdbcType="VARCHAR" />
+		<result column="managementCategory" property="managementCategory"  jdbcType="VARCHAR" />
+		<result column="liquidColumnCorrection" property="liquidColumnCorrection"  jdbcType="VARCHAR" />
+		<result column="certificateNum" property="certificateNum"  jdbcType="VARCHAR" />
+
+		<result column="productNumTwo" property="productNumTwo"  jdbcType="VARCHAR" />
+		<result column="productTypeTwo" property="productTypeTwo"  jdbcType="VARCHAR" />
+		<result column="productFactoryTwo" property="productFactoryTwo"  jdbcType="VARCHAR" />
+		<result column="productGMTTwo" property="productGMTTwo"  jdbcType="TIMESTAMP" />
+		<result column="gmt" property="gmt" jdbcType="TIMESTAMP" />
+		<result column="testPointNumTwo" property="testPointNumTwo"  jdbcType="VARCHAR" />
+		<result column="deviceProofTypeTwo" property="deviceProofTypeTwo"  jdbcType="VARCHAR" />
+		
+		<result column="ip" property="ip"  jdbcType="VARCHAR" />
+		<result column="city" property="city"  jdbcType="VARCHAR" />
+		<result column="com" property="com"  jdbcType="VARCHAR" />
+	</resultMap>
+	
+	
+	
+<!-- 	<select id="selectOptionByCondtion" resultMap="OptionResultMap" -->
+<!-- 		parameterType="com.cw.project.sys.entity.QueryCondition"> -->
+<!-- 		SELECT -->
+<!-- 		    a.configId, -->
+<!-- 	        a.userId, -->
+<!-- 	        b.gmt_create, -->
+<!-- 	        a.isChannelTwo, -->
+<!-- 	        a.ip, -->
+<!-- 	        a.city, -->
+<!-- 	        a.com -->
+<!--         FROM -->
+<!-- 	        config a -->
+<!-- 	    LEFT JOIN validateresultentity b ON a.configId = b.configId -->
+<!--             where 1=1 -->
+<!--             <if test="userId != null"> -->
+<!-- 				and a.userId = #{userId,jdbcType=VARCHAR} -->
+<!-- 			</if> -->
+<!--             and b.gmt_create <![CDATA[>=]]> #{gmtCreate,jdbcType=TIMESTAMP} -->
+<!--             and b.gmt_create <![CDATA[<=]]> #{gmtCreateEnd,jdbcType=TIMESTAMP} -->
+<!--         GROUP BY b.gmt_create -->
+<!--         ORDER BY b.gmt_create DESC -->
+<!--         limit #{pageCount, jdbcType=INTEGER}, 20 -->
+<!-- 	</select> -->
+	
+	
+	<sql id="Base_Column_List">
+		configId, userId, inputType, inputUnit, inputLine, inputHeigh, inputLow,
+		outputType,
+		outputUnit, outputLine, outputHeigh, outputLow, baseOffSet, holdTime, error,
+		returnError,
+		checkPoints, isReturn, baudrate, databits, stopbits, parity,
+		productType,productNum,productLevel,productFactory,productGMT,productInputRange,productOutputRange,productUseSpot,
+		deviceGenerateType,deviceGenerateNum,deviceGenerateLevel,deviceProofType,deviceProofNum,deviceProofLevel,testPointNum,
+		workProperty,temperature,relativeHumidity,region,managementCategory,liquidColumnCorrection,certificateNum,
+		productNumTwo,productTypeTwo,productFactoryTwo,productGMTTwo,
+		productInputRangeTwo,productOutputRangeTwo,isChannelTwo, gmt, testPointNumTwo,deviceProofTypeTwo,
+		ip, city, com
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from config
+		where configId = #{configId,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="selectConfigByUserId" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from config
+		where userId = #{userId,jdbcType=VARCHAR}
+		and gmt = (select max(gmt) from config where 1=1 and userId = #{userId,jdbcType=VARCHAR})
+	</select>
+	
+<!-- 	<select id="selectConfigidByLike" resultMap="BaseResultMap" -->
+<!-- 		parameterType="com.cw.project.sys.entity.QueryConditionForReportDownload"> -->
+<!-- 		SELECT *   -->
+<!-- 		FROM config -->
+<!--         WHERE 1=1 -->
+<!--         and gmt = #{gmt,jdbcType=TIMESTAMP} -->
+<!--         and configId like CONCAT(#{configIdNoTimeString},'%') -->
+<!-- 	</select> -->
+	
+<!-- 	<select id="selectByUserId" resultType="java.lang.String" -->
+<!-- 		parameterType="java.lang.String"> -->
+<!-- 	select c.configId from (select a.* from config a INNER JOIN ( -->
+<!--     select max(gmt) date,configId from config group by configId -->
+<!--     ) b on a.gmt = b.date and b.configId = a.configId)as c where c.userId = #{userId,jdbcType=VARCHAR}) -->
+<!-- 	</select> -->
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from config
+		where configId = #{configId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert"
+		parameterType="com.example.lxk.model.Config">
+		insert into config (configId, userId, inputType,
+		inputUnit, inputLine, inputHeigh,
+		inputLow, outputType, outputUnit,
+		outputLine, outputHeigh, outputLow,
+		baseOffSet, holdTime, error,
+		returnError, checkPoints, isReturn,
+		
+		baudrate, databits, stopbits, parity,
+		productType,productNum,productLevel,productFactory,productGMT,productInputRange,productOutputRange,productUseSpot,
+		deviceGenerateType,deviceGenerateNum,deviceGenerateLevel,deviceProofType,deviceProofNum,deviceProofLevel,testPointNum,
+		workProperty,temperature,relativeHumidity,region,managementCategory,liquidColumnCorrection,certificateNum,
+		productNumTwo,productTypeTwo,productFactoryTwo,productGMTTwo,productInputRangeTwo,productOutputRangeTwo,isChannelTwo,gmt,testPointNumTwo,deviceProofTypeTwo,
+		ip, city, com
+		)
+		values (#{configId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR},
+		#{inputType,jdbcType=VARCHAR},
+		#{inputUnit,jdbcType=VARCHAR}, #{inputLine,jdbcType=VARCHAR}, #{inputHeigh,jdbcType=VARCHAR},
+		#{inputLow,jdbcType=VARCHAR}, #{outputType,jdbcType=VARCHAR},
+		#{outputUnit,jdbcType=VARCHAR},
+		#{outputLine,jdbcType=VARCHAR}, #{outputHeigh,jdbcType=VARCHAR}, #{outputLow,jdbcType=VARCHAR},
+		#{baseOffSet,jdbcType=VARCHAR}, #{holdTime,jdbcType=VARCHAR},
+		#{error,jdbcType=VARCHAR},
+		#{returnError,jdbcType=VARCHAR}, #{checkPoints,jdbcType=VARCHAR}, #{isReturn,jdbcType=VARCHAR},
+		#{baudrate,jdbcType=VARCHAR}, #{databits,jdbcType=VARCHAR},
+		#{stopbits,jdbcType=VARCHAR}, #{parity,jdbcType=VARCHAR},
+		
+		#{productType,jdbcType=VARCHAR}, #{productNum,jdbcType=VARCHAR},#{productLevel,jdbcType=VARCHAR},#{productFactory,jdbcType=VARCHAR},
+		#{productGMT,jdbcType=TIMESTAMP}, #{productInputRange,jdbcType=VARCHAR},#{productOutputRange,jdbcType=VARCHAR},#{productUseSpot,jdbcType=VARCHAR},
+		#{deviceGenerateType,jdbcType=VARCHAR},#{deviceGenerateNum,jdbcType=VARCHAR},#{deviceGenerateLevel,jdbcType=VARCHAR},
+		#{deviceProofType,jdbcType=VARCHAR},#{deviceProofNum,jdbcType=VARCHAR},#{deviceProofLevel,jdbcType=VARCHAR},#{testPointNum,jdbcType=VARCHAR},
+		#{workProperty,jdbcType=VARCHAR},#{temperature,jdbcType=VARCHAR},#{relativeHumidity,jdbcType=VARCHAR},
+		#{region,jdbcType=VARCHAR},#{managementCategory,jdbcType=VARCHAR},
+		#{liquidColumnCorrection,jdbcType=VARCHAR},#{certificateNum,jdbcType=VARCHAR},
+		#{productNumTwo,jdbcType=VARCHAR},#{productTypeTwo,jdbcType=VARCHAR},
+		#{productFactoryTwo,jdbcType=VARCHAR},#{productGMTTwo,jdbcType=TIMESTAMP},
+		#{productInputRangeTwo,jdbcType=VARCHAR},#{productOutputRangeTwo,jdbcType=VARCHAR},#{isChannelTwo,jdbcType=VARCHAR},
+		#{gmt,jdbcType=TIMESTAMP},#{testPointNumTwo,jdbcType=VARCHAR},
+		#{deviceProofTypeTwo,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR},
+		#{com,jdbcType=VARCHAR}
+		)
+	</insert>
+
+
+	<update id="updateByPrimaryKeySelective"
+		parameterType="java.lang.String">
+		UPDATE config
+		<set>
+			<if test="inputType != null">
+				inputType = #{inputType,jdbcType=VARCHAR},
+			</if>
+			<if test="inputUnit != null">
+				inputUnit = #{inputUnit,jdbcType=VARCHAR},
+			</if>
+			<if test="inputLine != null">
+				inputLine = #{inputLine,jdbcType=TIMESTAMP},
+			</if>
+			<if test="inputHeigh != null">
+				inputHeigh = #{inputHeigh,jdbcType=TIMESTAMP},
+			</if>
+			<if test="inputLow != null">
+				inputLow = #{inputLow,jdbcType=VARCHAR},
+			</if>
+			<if test="outputType != null">
+				outputType = #{outputType,jdbcType=VARCHAR},
+			</if>
+			<if test="outputUnit != null">
+				outputUnit = #{outputUnit,jdbcType=VARCHAR},
+			</if>
+			<if test="outputLine != null">
+				outputLine = #{outputLine,jdbcType=VARCHAR},
+			</if>
+			<if test="baseOffSet != null">
+				baseOffSet = #{baseOffSet,jdbcType=VARCHAR},
+			</if>
+			<if test="holdTime != null">
+				holdTime = #{holdTime,jdbcType=VARCHAR},
+			</if>
+			<if test="error != null">
+				error = #{error,jdbcType=VARCHAR},
+			</if>
+			<if test="returnError != null">
+				returnError = #{returnError,jdbcType=VARCHAR},
+			</if>
+			<if test="checkPoints != null">
+				checkPoints = #{checkPoints,jdbcType=VARCHAR}
+			</if>
+			<if test="baudrate != null">
+				baudrate = #{checkPoints,jdbcType=VARCHAR}
+			</if>
+			<if test="databits != null">
+				databits = #{checkPoints,jdbcType=VARCHAR}
+			</if>
+			<if test="stopbits != null">
+				stopbits = #{checkPoints,jdbcType=VARCHAR}
+			</if>
+			<if test="parity != null">
+				parity = #{checkPoints,jdbcType=VARCHAR}
+			</if>
+		</set>
+		WHERE
+		where configId = #{configId,jdbcType=VARCHAR}
+		
+	</update>
+
+</mapper>

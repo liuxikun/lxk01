@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.lxk.mapper.ValidateresultentityMapper" >
+  <resultMap id="BaseResultMap" type="com.example.lxk.model.Validateresultentity" >
+    <result column="seriNum" property="pointNum" jdbcType="VARCHAR" />
+    <result column="validatePoint" property="inputValue" jdbcType="VARCHAR" />
+    <result column="actuInput" property="realTimePre" jdbcType="VARCHAR" />
+    <result column="expectOutput" property="outputValue" jdbcType="VARCHAR" />
+
+    <result column="configId" property="configId" jdbcType="VARCHAR" />
+    <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="validate_result_one" property="validateResultOne" jdbcType="VARCHAR" />
+    <result column="validate_result_two" property="validateResultTwo" jdbcType="VARCHAR" />
+    <result column="channelOne" property="channelOne" jdbcType="VARCHAR" />
+    <result column="channelTwo" property="channelTwo" jdbcType="VARCHAR" />
+    <result column="error1" property="error1" jdbcType="VARCHAR" />
+    <result column="error2" property="error2" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <select id="selectMaxNumber"
+          parameterType="java.lang.String"
+          resultType="java.lang.Integer" >
+          SELECT MAX(v.seriNum + 0) from validateresultentity v where v.configId = #{configId,jdbcType=VARCHAR}
+  </select>
+  
+    <select id="selectTotalDataNumber"
+          parameterType="java.lang.String"
+          resultType="java.lang.Integer" >
+          SELECT count(*) from validateresultentity v where v.configId = #{configId,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="findDataByConfigId"
+			parameterType="com.example.lxk.entity.QueryConditionForExcleDownLoad"
+			resultMap="BaseResultMap" >
+            select v.* from validateresultentity as v 
+            inner JOIN (SELECT * from config where configId = #{configId,jdbcType=VARCHAR}) c 
+            on v.configId = c.configId 
+            where 1=1
+	        and v.version = #{version,jdbcType=VARCHAR}
+            order by seriNum + 0 ASC
+  </select>
+  
+  <select id="returnDataListByConfigId"
+			parameterType="java.lang.String"
+			resultType="java.lang.String" >
+		select DISTINCT(v.gmt_create) 
+        from validateresultentity v
+        where v.configId = #{configId,jdbcType=VARCHAR}
+        ORDER BY v.gmt_create DESC limit 8
+  </select>
+  
+  <select id="findDataByCondition"
+			parameterType="java.lang.String"
+			resultMap="BaseResultMap" >
+		select * from validateresultentity 
+		where 1=1
+		and configId = #{configId,jdbcType=VARCHAR}
+		order by seriNum+0 ASC
+  </select>
+ 
+ 
+	
+  <insert id="insert" parameterType="com.example.lxk.model.Validateresultentity" >
+    insert into validateresultentity (seriNum, validatePoint, actuInput,expectOutput,
+      configId, gmt_create,
+      validate_result_one,validate_result_two,
+      channelOne,channelTwo,
+      error1,error2
+      )
+    values (#{pointNum,jdbcType=VARCHAR}, #{inputValue,jdbcType=VARCHAR}, #{realTimePre,jdbcType=VARCHAR},#{outputValue,jdbcType=VARCHAR}, 
+      #{configId,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP},
+      #{validateResultOne,jdbcType=VARCHAR}, #{validateResultTwo,jdbcType=VARCHAR}, 
+      #{channelOne,jdbcType=VARCHAR}, #{channelTwo,jdbcType=VARCHAR},
+      #{error1,jdbcType=VARCHAR}, #{error2,jdbcType=VARCHAR}
+      )
+  </insert>
+  
+  <insert id="insertBath" parameterType="com.example.lxk.model.Validateresultentity" >
+    insert into validateresultentity (seriNum, validatePoint, actuInput,expectOutput,
+      configId, gmt_create,
+      validate_result_one,validate_result_two,
+      channelOne,channelTwo,
+      error1,error2,version
+      )
+    values 
+    <foreach collection="list" item="validateresultentity" separator=",">
+     (#{validateresultentity.pointNum,jdbcType=VARCHAR}, #{validateresultentity.inputValue,jdbcType=VARCHAR}, 
+      #{validateresultentity.realTimePre,jdbcType=VARCHAR},#{validateresultentity.outputValue,jdbcType=VARCHAR}, 
+      #{validateresultentity.configId,jdbcType=VARCHAR}, #{validateresultentity.gmtCreate,jdbcType=TIMESTAMP},
+      #{validateresultentity.validateResultOne,jdbcType=VARCHAR}, #{validateresultentity.validateResultTwo,jdbcType=VARCHAR}, 
+      #{validateresultentity.channelOne,jdbcType=VARCHAR}, #{validateresultentity.channelTwo,jdbcType=VARCHAR},
+      #{validateresultentity.error1,jdbcType=VARCHAR}, #{validateresultentity.error2,jdbcType=VARCHAR},#{validateresultentity.version,jdbcType=VARCHAR}
+      )
+    </foreach>
+  </insert>
+</mapper>
